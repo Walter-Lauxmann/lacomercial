@@ -9,7 +9,7 @@ const alerta = document.getElementById("alerta");
 async function cargarArticulos() {
     divProductos.innerHTML = `Cargando datos...`;
     // Leer el JSON
-    let response = await fetch('./api/modelos/datos.php?tabla=productos&accion=seleccionar');
+    let response = await fetch('./api/datos.php?tabla=productos&accion=seleccionar');
     let datos = await response.json();
     if (response.status !== 200) {
         throw Error('Los datos no existen');
@@ -54,7 +54,7 @@ formulario.addEventListener('submit', function(e) {
     const datos = new FormData(formulario);
     console.log(datos.get('txtcodigo'));
 
-    fetch('./api/modelos/datos.php?tabla=productos&accion=insertar', {
+    fetch('./api/datos.php?tabla=productos&accion=insertar', {
         method: 'POST',
         body: datos
     })

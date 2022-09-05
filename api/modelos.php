@@ -30,18 +30,55 @@ class Modelo{
 
 /* Clase ModeloABM basada en Modelo */
 class ModeloABM extends Modelo{
-    protected $tabla;       // nombre de la tabla
-    public $id= 0;          // id del registro
-    public $criterio= '';   // criterio para las consultas
-    public $orden= 'id';    // campo de ordenamiento
-    public $campos= '*';    // lista de campos
-    public $limit= 0;       // cantidad de registros
-    public $json= true;     // resultados en formato JSON
+    private $tabla;         // nombre de la tabla
+    private $id= 0;         // id del registro
+    private $criterio= '';  // criterio para las consultas
+    private $orden= 'id';   // campo de ordenamiento
+    private $campos= '*';   // lista de campos
+    private $limit= 0;      // cantidad de registros
 
     public function __construct($t){ 
         parent::__construct(); 
         $this->tabla= $t;
     }
+
+    public function setTabla($tabla) {
+        $this->tabla = $tabla;
+    }
+    public function getTabla() {
+        return $this->tabla;
+    }
+    public function setId($id) {
+        $this->id = $id;
+    }
+    public function getId() {
+        return $this->id;
+    }
+    public function setCriterio($criterio) {
+        $this->criterio = $criterio;
+    }
+    public function getCriterio() {
+        return $this->criterio;
+    }
+    public function setOrden($orden) {
+        $this->orden = $orden;
+    }
+    public function getOrden() {
+        return $this->orden;
+    }
+    public function setCampos($campos) {
+        $this->campos = $campos;
+    }
+    public function getCampos() {
+        return $this->campos;
+    }
+    public function setLimit($limit) {
+        $this->limit = $limit;
+    }
+    public function getLimit() {
+        return $this->limit;
+    }
+
     // Método de conexión 
     public function conexion(){
         return $this->_db;
@@ -62,22 +99,11 @@ class ModeloABM extends Modelo{
             // Agregamos el límite
             $sql .= " LIMIT $this->limit"; // LIMITE $limit
         }
-        //echo $sql.'<br />'; // mostramos la instruccón sql resultante        
+        //echo $sql.'<br />'; // mostramos la instruccón sql resultante
         $resultado = $this->_db->query($sql); // Ejecutamos la consulta la guardamos en $resultado
         $datos = $resultado->fetch_all(MYSQLI_ASSOC); // Guardamos los datos resultantes en un array asociativo
-        
-        // Si $json es verdadero
-        if ($this->json == true){
-            $json_datos = json_encode($datos) ; // Convertimos los datos en formato JSON
-            // $json_datos = str_replace('\\','',$json_datos);
-            // $json_datos = str_replace('"{','{',$json_datos);
-            // $json_datos = str_replace('}"','}',$json_datos);
-            return $json_datos ; // Retornamos los datos en formato JSON            
-        }
-        // Sino
-        else{ 
-            return $datos; // Retornamos los datos en formato array asociativo
-        }        
+        $json_datos = json_encode($datos) ; // Convertimos los datos en formato JSON
+        return $json_datos ; // Retornamos los datos en formato JSON
     }
 
     // Método para la inserción de datos
