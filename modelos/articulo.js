@@ -1,4 +1,4 @@
-export const articulo = {
+export const producto = {
         id: '',
         codigo: '',
         nombre: '',

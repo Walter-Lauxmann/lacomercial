@@ -39,7 +39,7 @@
     </div>
     <section class="container">
         <!-- Button iniciador del modal -->
-        <button type="button" id="btnFormulario" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formularioModal">
+        <button type="button" id="btnCrear" class="btn btn-primary" data-bs-toggle="modal">
             Nuevo producto
         </button>
         <button class="btn btn-primary" onclick="agregarPedido()">Agregar al pedido</button>
@@ -78,45 +78,52 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="formularioModal" tabindex="-1" aria-labelledby="formularioModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
+    <div class="modal fade" id="formularioModal" tabindex="-1" aria-labelledby="formularioModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
             <form id="formulario">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="formularioModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="formularioModalLabel">Producto</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="container" id="modalContent">
+                        <div class="container-fluid" id="modalContent">
                             <div class="row">
-                                <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" name="codigo" id="codigo"
-                                        placeholder="Código del producto">
-                                    <label for="codigo">Código</label>
+                                <div class="col-md-5">
+                                    <img src="./imagenes/productos/nodisponible.png" alt="Imagen no disponible" id="frmimagen">
                                 </div>
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" name="nombre" id="nombre"
-                                        placeholder="Nombre">
-                                    <label for="nombre">Nombre</label>
-                                </div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Descripción" name="descripcion"
-                                        id="descripcion"></textarea>
-                                    <label for="descripcion">Descripción</label>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">$</span>
-                                    <div class="form-floating">
-                                        <input type="number" class="form-control" name="precio" id="precio"
-                                            placeholder="Precio">
-                                        <label for="precio">Precio</label>
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="form-floating mb-3">
+                                            <input type="number" class="form-control" name="codigo" id="codigo"
+                                                placeholder="Código del producto">
+                                            <label for="codigo">Código</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="nombre" id="nombre"
+                                                placeholder="Nombre">
+                                            <label for="nombre">Nombre</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Descripción" name="descripcion"
+                                                id="descripcion"></textarea>
+                                            <label for="descripcion">Descripción</label>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">$</span>
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control" name="precio" id="precio"
+                                                    placeholder="Precio">
+                                                <label for="precio">Precio</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Seleccionr imagen</label>
+                                            <input class="form-control" type="file" id="imagen" name="imagen">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="formFile" class="form-label">Seleccionr imagen</label>
-                                    <input class="form-control" type="file" id="imagen" name="imagen">
-                                </div>
+
                             </div>
                         </div>
                     </div>
