@@ -76,7 +76,10 @@ class ModeloABM extends Modelo {
         $this->limit= $limit;
     }
 
-    /* Método de selección */
+    /**
+     * Método de selección
+     * Selecciona los datos de una tabla de la base de datos
+     */
     public function seleccionar() {
         // Guardamos en la variable $sql la instrucción SELECT
         $sql= "SELECT $this->campos FROM $this->tabla"; // SELECCIONAR $campos DESDE $tabla
@@ -96,10 +99,14 @@ class ModeloABM extends Modelo {
         $resultado= $this->_db->query($sql); // Ejecutamos la consulta y la guardamos en $resultado
         $datos= $resultado->fetch_all(MYSQLI_ASSOC); // Guardamos los datos resultantes en un Array asociativo
         $json_datos= json_encode($datos); // Convertimos los datos en formato JSON
-        return $json_datos; // Retornamos los datos en formato JSON 
+        return $json_datos; // Retornamos los datos en formato JSON
     }
 
-    /* Método para la inserción de datos */
+    /**
+     * Método para la inserción de datos
+     * Inserta un registro en una tabla de la base de datos
+     * @param $valores Los valores en formato JSON a insertar
+     */
     public function insertar($valores) {
         $campos= '';
         $datos= '';
@@ -115,30 +122,33 @@ class ModeloABM extends Modelo {
         // Guardamos en la variable $sql la instrucción INSERT
         $sql= "INSERT INTO $this->tabla($campos) VALUES($datos)"; // INSERTAR DENTRO de $tabla en los ($campos) los VALORES de ($datos)
         // echo $sql.'<br>'; // Mostramos la instrucción SQL resultante
-        $this->_db->query($sql); // Ejecutamos la consulta 
+        $this->_db->query($sql); // Ejecutamos la consulta
     }
 
-    /* Método para la actualización de datos */
+    /**
+     *  Método para la actualización de datos
+     */
     public function actualizar($valores) {
         $sql = "UPDATE $this->tabla SET "; // ACTUALIZAR $tabla ESTABLECIENDO
         // Para cada $valores como $key => value
-        foreach( $valores as $key => $value ) {
+        foreach ($valores as $key => $value) {
             // Agregamos a la instrucción sql los campos ($key) y los valores ($value)
             $sql .= $key."='".$value."',";
         }
-        $sql= substr($sql,0,strlen($sql)-1); // Quitamos el último caracter (,) a $sql
+        $sql= substr($sql, 0, strlen($sql)-1); // Quitamos el último caracter (,) a $sql
         // Agregamos a la instrucción el criterio
         $sql .= " WHERE $this->criterio"; // DONDE $criterio
         // echo $sql.'<br>'; // Mostramos la instrucción SQL resultante
-        $this->_db->query($sql); // Ejecutamos la consulta 
+        $this->_db->query($sql); // Ejecutamos la consulta
     }
 
-    /* Método para la eliminación de datos */
+    /**
+     * Método para la eliminación de datos
+     */
     public function eliminar() {
         // Guardamos en la variable $sql la instrucción DELETE
         $sql= "DELETE FROM $this->tabla WHERE $this->criterio"; // ELIMINAR DESDE $tabla DONDE $criterio
-        $this->_db->query($sql); // Ejecutamos la consulta 
+        $this->_db->query($sql); // Ejecutamos la consulta
     }
-
 }
 ?>

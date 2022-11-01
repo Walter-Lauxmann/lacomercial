@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,23 +35,24 @@
         <h1>La Comercial SRL</h1>
     </header>
     <section class="container">
+        <div class="alert alert-primary" role="alert" id="alerta">
+        </div>
         <article>
             <div class="row">
                 <div class="col">
-                    <h2>Artículos de importación</h2>
-                    <p>
-                        Urquiza 2153 <br />
-                        2200 - San Lorenzo - Santa Fe<br />
-                        Responsable Inscripto<br />
-                        CUIT: 30-56032503-3<br />
-                        I. Brutos: CM 921-750546
-                    </p>
-                </div>
-                <div class="col">
-                    <a href="ofertas.html">
-                        <img src="imagenes/smartphones-1175-1500x993.jpg" style="width: 100%;" alt="ofertas">
-                    </a>
-                </div>
+                    <form id="login">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="usuario" id="usuario"
+                                placeholder="Usuario">
+                            <label for="usuario">Usuario</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" name="password" id="password"
+                                placeholder="******">
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                    </form>
             </div>
         </article>
     </section>
@@ -62,6 +64,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+        <script src="./login.js"></script>
 </body>
 
 </html>

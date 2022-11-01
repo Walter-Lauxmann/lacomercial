@@ -1,13 +1,22 @@
 <?php
-    require_once 'modelos.php'; //Requerimos el archivo de clases modelo.php
-    $jvalores= file_get_contents("php://input"); // Tomamos los valores que vienen del POST en formato JSON
-    $valores= json_decode($jvalores); // Convertimos los valores JSON a Array Asociativo
+require_once 'modelos.php'; //Requerimos el archivo de clases modelo.php
+$mensaje = '';
+$valores = $_POST; // Tomamos los valores que vienen del POST en formato JSON
+if ($_POST['usuario'] == '' || $_POST['password'] == '') {
+    $mensaje .= "El usuario o la contraseña están vacíos<br>";
+    echo json_encode($mensaje);
+} else {
+    $usuario = "'" . $_POST['usuario'] . "'"; //Guardamos en la variable $usuario
+    $password = "'" . $_POST['password'] . "'"; //Guardamos en la variable $password
 
-    $usuario = "'".$valores->usuario."'"; //Guardamos en la variable $usuario
-    $password = "'".$valores->password."'";
-
-    $usuarios = new ModeloABM('usuarios');
-    $usuarios->criterio = "usuario=$usuario AND password=$password";
+    $usuarios = new ModeloABM('clientes');
+    $usuarios->set_criterio("usuario=$usuario AND password=$password");
     $datos = $usuarios->seleccionar();
-    echo $datos;
+    if (count(json_decode($datos)) == 0) {
+        $mensaje .= "El usuario o la contraseña no coinciden<br>";
+        echo json_encode($mensaje);
+    } else {
+        echo $datos;
+    }
+}
 ?>
